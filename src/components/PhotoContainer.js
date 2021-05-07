@@ -2,12 +2,13 @@ import React from 'react';
 import PhotoBuild from './PhotoBuild';
 
 const PhotoContainer = ((props) => {
+  const {data, title} = props;
   return(
     <div className="photo-container">
-      <h2>Results</h2>
+      <h2>{title}</h2>
       <ul>
       {
-        [...props.data].map((v) => 
+        [...data].map((v) => 
           <PhotoBuild 
             serverId={v.server}
             id={v.id}

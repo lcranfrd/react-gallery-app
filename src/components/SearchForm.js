@@ -1,35 +1,40 @@
-import React, {Component} from 'react';
+import React, {useRef} from 'react';
+import {withRouter} from 'react-router-dom';
+
 import SearchIcon from './SearchIcon';
 
-export default class SearchForm extends Component {
+const SearchForm = (props) => {
+console.log(props)
+ let searchInput = useRef(null);
 
-  state = {
-    searchText: ''
+  const onSearchChange = (e) => {
+    searchInput = e.target.value;
   }
 
-  onSearchChange = ((e) => {
-    this.setState({searchText: e.target.value});
-  });
-
-  handleSubmit = ((e) => {
+  const handleSubmit = ((e) => {
     e.preventDefault();
-    this.props.execSearch(this.query.value);
+    props.execSearch(searchInput);
+    const path = `/search/${searchInput}`;
+    props.history.push(path);
     e.currentTarget.reset();
   });
 
-  render() {
     return(
-      <form className="search-form" onSubmit={this.handleSubmit}>
+      <form className="search-form" onSubmit={handleSubmit}>
         <input type="search"
           name="search"
-          ref={(input) => this.query = input}
-          placeholder="Search"
+          ref={searchInput}
+          onChange={onSearchChange}
+          placeholder="Search Tags"
+          autoComplete="off"
           required="required"
-          onChange={this.onSearchChange} />
-        <button className="search-button" type="submit">
+          />
+        <button className="search-button" type="submit" >
           <SearchIcon />
         </button>
       </form>
     );
-  }
+
 }
+
+export default withRouter(SearchForm);

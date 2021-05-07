@@ -2,52 +2,100 @@ import React, {Component} from 'react';
 import {
   BrowserRouter,
   Route,
-  Switch
+  Switch,
+  Redirect,
 } from 'react-router-dom';
 import axios from 'axios';
 import Config from './config';
-import './App.css';
 import SearchForm from './components/SearchForm';
 import Nav from './components/Nav'
 import PhotoContainer from './components/PhotoContainer';
-import NotFound from './components/NotFound'
+import NotFound from './components/NotFound';
+// import NotFound from './components/NotFound'
 
 export default class App extends Component {
   
   state = {
-    data: [],
+    data1: [],
+    data2: [],
+    data3: [],
+    data4: [],
+    data5: [],
+    query: '',
     loading: true
   };
-
-
+  
   componentDidMount() {
-    this.performSearch();
+    this.fetchData('astronomy')
+    this.fetchData('boats', 'data2')
+    this.fetchData('Experimental Planes', 'data3')
+    this.fetchData('mountains', 'data4')
   }
-
-  performSearch = (query = Config.text) => {
-    Config.text = query;
-    axios.get('https://www.flickr.com/services/rest/', {params:{...Config}})     
-    .then((response) => {
-      this.setState({
-        data: response.data.photos.photo,
-        loading: false
+    
+    fetchData = (query = Config.tags, dataPage = 'data1') => {
+      Config.tags = query;
+      dataPage === 'data5' && this.setState({loading: true})
+      axios.get('https://www.flickr.com/services/rest/', {params:{...Config}})
+        .then((res) => {
+          this.setState({
+            [dataPage]: res.data.photos.photo,
+            loading: false,
+            query
+          })
       })
-    })
-    .catch((error) => {
-      console.log('Error fetching and parsing data', error)
-    })
-  }
-
-  render() { 
+      .catch((error) => {
+        console.log('Error fetching and parsing data', error)
+      })
+    }
+    
+    performSearch = (topic) => {
+      console.log(topic)
+      this.fetchData(topic, 'data5');
+    }
+    
+    render() { 
     return (
       <BrowserRouter>
         <div className="container">
-          <SearchForm execSearch={this.performSearch}/>
+          <SearchForm execSearch={this.performSearch} />
           <Nav />
-          <Switch>
-            <Route path='/' render={() => <PhotoContainer data={this.state.data} />} />
-            <Route component={NotFound} />
-          </Switch>
+             { (this.state.loading)
+                ? <h1>Loading!</h1>
+                : <Switch>
+                  <Route exact path='/' render={() =>
+                    <PhotoContainer
+                      data={this.state.data1}
+                      title='Astronomy'
+                    />} />
+                  <Route path='/Astronomy' render={() => <Redirect to='/' />} />
+                  <Route path='/Boats' render={() =>
+                    <PhotoContainer
+                      data={this.state.data2}
+                      title='Boats'
+                    />}
+                  />
+                  <Route path='/Experimental Planes' render={() =>
+                    <PhotoContainer
+                      data={this.state.data3}
+                      title='Experimental Planes'
+                    />}
+                  />
+                  <Route path='/Mountains' render={() =>
+                    <PhotoContainer
+                      data={this.state.data4}
+                      title='Mountains'
+                    />}
+                  />
+                  <Route path='/Search/:topic' render={(props) =>
+                    <PhotoContainer
+                      data={this.state.data5}
+                      title={this.state.query}
+                      {...props}
+                    />}
+                  />
+                  <Route component={NotFound} />
+                </Switch>
+             }
         </div>
       </BrowserRouter>
     );
