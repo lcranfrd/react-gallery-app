@@ -4,8 +4,7 @@ import {withRouter} from 'react-router-dom';
 import SearchIcon from './SearchIcon';
 
 const SearchForm = (props) => {
-console.log(props)
- let searchInput = useRef(null);
+  let searchInput = useRef(null);
 
   const onSearchChange = (e) => {
     searchInput = e.target.value;

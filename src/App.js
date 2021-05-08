@@ -11,7 +11,6 @@ import SearchForm from './components/SearchForm';
 import Nav from './components/Nav'
 import PhotoContainer from './components/PhotoContainer';
 import NotFound from './components/NotFound';
-// import NotFound from './components/NotFound'
 
 export default class App extends Component {
   
