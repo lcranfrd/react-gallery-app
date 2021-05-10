@@ -13,6 +13,18 @@ import PhotoContainer from './components/PhotoContainer';
 import NotFound from './components/NotFound';
 
 export default class App extends Component {
+  constructor() {
+    super();
+    this.config = {
+      method: "flickr.photos.search",
+      api_key: Config.api_key,//"d540df949792eeb7b780eb56090c2564",
+      tags: "astronomy",
+      sort: "relevance",
+      per_page: "16",
+      format: "json",
+      nojsoncallback: "1"
+    };
+  }
   
   state = {
     data1: [],
@@ -23,6 +35,8 @@ export default class App extends Component {
     query: '',
     loading: true
   };
+
+
   
   componentDidMount() {
     this.fetchData('astronomy')
@@ -31,10 +45,11 @@ export default class App extends Component {
     this.fetchData('mountains', 'data4')
   }
     
-    fetchData = (query = Config.tags, dataPage = 'data1') => {
-      Config.tags = query;
+    fetchData = (query = this.config.tags, dataPage = 'data1') => {
+      console.log(this.config)
+      this.config.tags = query;
       dataPage === 'data5' && this.setState({loading: true})
-      axios.get('https://www.flickr.com/services/rest/', {params:{...Config}})
+      axios.get('https://www.flickr.com/services/rest/', {params:{...this.config}})
         .then((res) => {
           this.setState({
             [dataPage]: res.data.photos.photo,

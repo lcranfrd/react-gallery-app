@@ -1,6 +1,7 @@
 
 import React from 'react';
 import PhotoBuild from './PhotoBuild';
+
 const PhotoContainer = ((props) => {
   const {data, title} = props;
   return(
