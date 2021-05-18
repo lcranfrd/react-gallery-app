@@ -1,8 +1,18 @@
 
-import React from 'react';
+import React, {useEffect} from 'react';
+import {withRouter} from 'react-router-dom';
 import PhotoBuild from './PhotoBuild';
+
 const PhotoContainer = ((props) => {
-  const {data, title} = props;
+  const {data, execSearch, title, match: {params: {topic}, path}} = props;
+
+  useEffect(() => {
+    // console.log((path));
+    (path === '/Search/:topic' && title !== topic)
+    && execSearch(topic)
+  });
+
+
   return(
     <div className="photo-container">
       <h2>{title}</h2>
@@ -26,4 +36,4 @@ const PhotoContainer = ((props) => {
   );
 })
 
-export default PhotoContainer;
+export default withRouter(PhotoContainer);

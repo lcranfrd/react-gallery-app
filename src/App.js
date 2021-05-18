@@ -3,7 +3,7 @@ import {
   BrowserRouter,
   Route,
   Switch,
-  Redirect,
+  Redirect
 } from 'react-router-dom';
 import axios from 'axios';
 import Config from './config';
@@ -13,33 +13,44 @@ import PhotoContainer from './components/PhotoContainer';
 import NotFound from './components/NotFound';
 
 export default class App extends Component {
-  
-  state = {
-    data1: [],
-    data2: [],
-    data3: [],
-    data4: [],
-    data5: [],
-    query: '',
-    loading: true
-  };
+  constructor (props) {
+    super(props);
+    this.fetchOptions = {
+      method: "flickr.photos.search",
+      api_key: Config.api_key,
+      tags: "astronomy",
+      sort: "relevance",
+      per_page: "16",
+      format: "json",
+      nojsoncallback: "1"
+    }
+    this.state = {
+      data1: [],
+      data2: [],
+      data3: [],
+      data4: [],
+      data5: [],
+      topic: '',
+      loading: true
+    };
+}
   
   componentDidMount() {
-    this.fetchData('astronomy')
-    this.fetchData('boats', 'data2')
+    this.fetchData('Astronomy')
+    this.fetchData('Boats', 'data2')
     this.fetchData('Experimental Planes', 'data3')
-    this.fetchData('mountains', 'data4')
+    this.fetchData('Oort Cloud', 'data4')
   }
     
-    fetchData = (query = Config.tags, dataPage = 'data1') => {
-      Config.tags = query;
+    fetchData = (topic = this.fetchOptions.tags, dataPage = 'data1') => {
+      this.fetchOptions.tags = topic;
       dataPage === 'data5' && this.setState({loading: true})
-      axios.get('https://www.flickr.com/services/rest/', {params:{...Config}})
+      axios.get('https://www.flickr.com/services/rest/', {params:{...this.fetchOptions}})
         .then((res) => {
           this.setState({
             [dataPage]: res.data.photos.photo,
             loading: false,
-            query
+            topic
           })
       })
       .catch((error) => {
@@ -48,7 +59,6 @@ export default class App extends Component {
     }
     
     performSearch = (topic) => {
-      console.log(topic)
       this.fetchData(topic, 'data5');
     }
     
@@ -79,16 +89,17 @@ export default class App extends Component {
                       title='Experimental Planes'
                     />}
                   />
-                  <Route path='/Mountains' render={() =>
+                  <Route path='/Oort Cloud' render={() =>
                     <PhotoContainer
                       data={this.state.data4}
-                      title='Mountains'
+                      title='Oort Cloud'
                     />}
                   />
                   <Route path='/Search/:topic' render={(props) =>
                     <PhotoContainer
+                      execSearch={this.performSearch}
                       data={this.state.data5}
-                      title={this.state.query}
+                      title={this.state.topic}
                       {...props}
                     />}
                   />

@@ -7,7 +7,7 @@ const Nav = () => (
       <li><NavLink exact to="/">Astronomy</NavLink></li>
       <li><NavLink to="/Boats">Boats</NavLink></li>
       <li><NavLink to="/Experimental%20Planes">Experimental Planes</NavLink></li>
-      <li><NavLink to="/Mountains">Mountains</NavLink></li>
+      <li><NavLink to="/Oort%20Cloud">Oort Cloud</NavLink></li>
     </ul>
   </nav>
 );

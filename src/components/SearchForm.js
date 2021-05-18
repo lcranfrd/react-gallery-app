@@ -13,7 +13,7 @@ const SearchForm = (props) => {
   const handleSubmit = ((e) => {
     e.preventDefault();
     props.execSearch(searchInput);
-    const path = `/search/${searchInput}`;
+    const path = `/Search/${searchInput}`;
     props.history.push(path);
     e.currentTarget.reset();
   });

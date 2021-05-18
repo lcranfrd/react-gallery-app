@@ -1,10 +1,12 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
-const NotFound = () => {
+const NotFound = (props) => {
+  console.log(props)
   return(
   <li className ="not-found">
-    <h3>No Results Found</h3>
-    <p>You search did not return any results. Please try again.</p>
+    <h2>{`Page "${props.location.pathname}" Not Found!`}</h2>
+    <p>Back to <Link to="/">Home</Link></p>
   </li>
   )
 }
