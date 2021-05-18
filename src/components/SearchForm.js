@@ -1,6 +1,5 @@
 import React, {useRef} from 'react';
 import {withRouter} from 'react-router-dom';
-
 import SearchIcon from './SearchIcon';
 
 const SearchForm = (props) => {

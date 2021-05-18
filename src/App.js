@@ -17,7 +17,7 @@ export default class App extends Component {
     super();
     this.fetchOptions = {
       method: "flickr.photos.search",
-      api_key: Config.api_key, //Sub out your own api_key for Config.api-key!
+      api_key: Config.api_key,
       tags: "astronomy",
       sort: "relevance",
       per_page: "16",
