@@ -6,12 +6,12 @@ import PhotoBuild from './PhotoBuild';
 const PhotoContainer = ((props) => {
   const {data, execSearch, title, match: {params: {topic}, path}} = props;
 
+  
   useEffect(() => {
-    // console.log((path));
     (path === '/Search/:topic' && title !== topic)
-    && execSearch(topic)
-  });
-
+      &&
+    execSearch(topic)
+  },[topic, path, title, execSearch]);
 
   return(
     <div className="photo-container">
