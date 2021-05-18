@@ -13,8 +13,8 @@ import PhotoContainer from './components/PhotoContainer';
 import NotFound from './components/NotFound';
 
 export default class App extends Component {
-  constructor (props) {
-    super(props);
+  constructor () {
+    super();
     this.fetchOptions = {
       method: "flickr.photos.search",
       api_key: Config.api_key,
