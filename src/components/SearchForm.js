@@ -1,8 +1,10 @@
 import React, {useRef} from 'react';
-import {withRouter} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import SearchIcon from './SearchIcon';
 
 const SearchForm = (props) => {
+  const history = useHistory();
+  const {execSearch} = props;
   let searchInput = useRef(null);
 
   const onSearchChange = (e) => {
@@ -11,9 +13,9 @@ const SearchForm = (props) => {
 
   const handleSubmit = ((e) => {
     e.preventDefault();
-    props.execSearch(searchInput);
+    execSearch(searchInput);
     const path = `/Search/${searchInput}`;
-    props.history.push(path);
+    history.push(path);
     e.currentTarget.reset();
   });
 
@@ -35,4 +37,4 @@ const SearchForm = (props) => {
 
 }
 
-export default withRouter(SearchForm);
+export default SearchForm;

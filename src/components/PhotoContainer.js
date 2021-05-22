@@ -1,17 +1,12 @@
 
-import React, {useEffect} from 'react';
+import React from 'react';
 import {withRouter} from 'react-router-dom';
 import PhotoBuild from './PhotoBuild';
 
 const PhotoContainer = ((props) => {
-  const {data, execSearch, title, match: {params: {topic}, path}} = props;
+  const {data, execSearch, title, modalOn, match: {params: {topic}, path}} = props;
 
-  
-  useEffect(() => {
-    (path === '/Search/:topic' && title !== topic)
-      &&
-    execSearch(topic)
-  },[topic, path, title, execSearch]);
+  (path === '/Search/:topic' && title !== topic) && execSearch(topic);
 
   return(
     <div className="photo-container">
@@ -26,6 +21,7 @@ const PhotoContainer = ((props) => {
               id={v.id}
               secret={v.secret}
               title={v.title}
+              modalOn={modalOn}
               key={v.id}
             />
           )

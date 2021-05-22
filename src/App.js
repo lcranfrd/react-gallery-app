@@ -11,19 +11,11 @@ import SearchForm from './components/SearchForm';
 import Nav from './components/Nav'
 import PhotoContainer from './components/PhotoContainer';
 import NotFound from './components/NotFound';
+import LargePicModal from './components/LargePicModal';
 
-export default class App extends Component {
+class App extends Component {
   constructor () {
     super();
-    this.fetchOptions = {
-      method: "flickr.photos.search",
-      api_key: Config.api_key,
-      tags: "astronomy",
-      sort: "relevance",
-      per_page: "16",
-      format: "json",
-      nojsoncallback: "1"
-    }
     this.state = {
       data1: [],
       data2: [],
@@ -31,9 +23,21 @@ export default class App extends Component {
       data4: [],
       data5: [],
       topic: '',
-      loading: true
+      loading: true,
+      isModalOn: false,
+      modalUrl: "",
+      largePicName: ""
     };
-}
+    this.fetchOptions = {
+      method: "flickr.photos.search",
+      api_key: Config.api_key,
+      tags: "astronomy",
+      sort: "relevance",
+      per_page: "24",
+      format: "json",
+      nojsoncallback: "1",
+    }
+  }
   
   componentDidMount() {
     this.fetchData('Astronomy')
@@ -61,7 +65,15 @@ export default class App extends Component {
     performSearch = (topic) => {
       this.fetchData(topic, 'data5');
     }
-    
+
+    modalOn = (largeUrl, title) => {
+      this.setState({
+        isModalOn: true,
+        modalUrl: largeUrl,
+        largePicName: title
+      })
+    }
+
     render() { 
     return (
       <BrowserRouter>
@@ -75,24 +87,28 @@ export default class App extends Component {
                     <PhotoContainer
                       data={this.state.data1}
                       title='Astronomy'
+                      modalOn={this.modalOn}
                     />} />
                   <Route path='/Astronomy' render={() => <Redirect to='/' />} />
                   <Route path='/Boats' render={() =>
                     <PhotoContainer
                       data={this.state.data2}
                       title='Boats'
+                      modalOn={this.modalOn}
                     />}
                   />
                   <Route path='/Experimental Planes' render={() =>
                     <PhotoContainer
                       data={this.state.data3}
                       title='Experimental Planes'
+                      modalOn={this.modalOn}
                     />}
                   />
                   <Route path='/Oort Cloud' render={() =>
                     <PhotoContainer
                       data={this.state.data4}
                       title='Oort Cloud'
+                      modalOn={this.modalOn}
                     />}
                   />
                   <Route path='/Search/:topic' render={(props) =>
@@ -100,7 +116,15 @@ export default class App extends Component {
                       execSearch={this.performSearch}
                       data={this.state.data5}
                       title={this.state.topic}
+                      modalOn={this.modalOn}
                       {...props}
+                    />}
+                  />
+                  <Route path='/LargePic/:name' render={() =>
+                    <LargePicModal
+                      img={this.state.modalUrl}
+                      title={this.state.largePicName}
+                      isModalOn={true}
                     />}
                   />
                   <Route component={NotFound} />
@@ -111,3 +135,5 @@ export default class App extends Component {
     );
   }
 }
+
+export default App
