@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 
 const LargePicModal = (props) => {
+  let history = useHistory();
   const {img, title, isModalOn} = props;
   const [modalOnState, setModalOnState] = useState(isModalOn);
-  let history = useHistory();
   const classIdToggle = () => (
     modalOnState
     ? 'modal-container display-block animate__animated animate__slideInUp'
@@ -13,7 +13,7 @@ const LargePicModal = (props) => {
   const turnModal = () => {
     setModalOnState(false);
     classIdToggle();
-    setTimeout(() => history.goBack(),1000);
+    setTimeout(() => history.goBack(),750);
   }
 
   return (

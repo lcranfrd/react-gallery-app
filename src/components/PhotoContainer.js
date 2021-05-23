@@ -1,13 +1,10 @@
 
 import React from 'react';
-import {withRouter, useLocation} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import PhotoBuild from './PhotoBuild';
 
 const PhotoContainer = ((props) => {
-  const location = useLocation();
-  console.log(location)
   const {data, execSearch, title, modalOn, match: {params: {topic}, path}} = props;
-
   (path === '/Search/:topic' && title !== topic) && execSearch(topic);
 
   return(
@@ -15,7 +12,7 @@ const PhotoContainer = ((props) => {
       <h2>{title}</h2>
       {data.length === 0
         ? <h3>Your Search Did Not Return Any Results</h3>
-        : <><h4>Click on Picture for Larger View</h4>
+        : <><h4>Click Picture for Larger View</h4>
         <ul>
             {
               [...data].map((v) => 

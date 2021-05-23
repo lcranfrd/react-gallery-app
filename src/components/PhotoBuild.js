@@ -1,7 +1,8 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+import {useHistory} from 'react-router';
 
 const PhotoBuild = (props) => {
+  const location = useHistory();
   const {serverId, id, secret, title, modalOn} = props;
   const imgSrc = `https://live.staticflickr.com/${serverId}/${id}_${secret}.jpg`;
   const lrgImgSrc = `https://live.staticflickr.com/${serverId}/${id}_${secret}_b.jpg`;
@@ -10,7 +11,7 @@ const PhotoBuild = (props) => {
   const turnOnModal = () => {
     modalOn(lrgImgSrc, title);
     const path = `/LargePic/${title}`;
-    props.history.push(path);
+    location.push(path);
   }
 
   return (
@@ -20,4 +21,4 @@ const PhotoBuild = (props) => {
   );
 };
 
-export default withRouter(PhotoBuild);
+export default PhotoBuild;
