@@ -61,7 +61,7 @@ class App extends Component {
     }
     this.titles = {
       title1: 'Hubble',
-      title2: 'Monuments',
+      title2: 'La Sagrada Familia',
       title3: 'NTSB',
       title4: 'Surveilence'
     }
