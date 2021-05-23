@@ -1,6 +1,6 @@
 App for TreeHouse FS Tech Degree Project #7 React Gallery App
 Display photos from Flickr API.
-Reviewers may create a 'config.js' file in the same directory as App.js with the following structure:
+Reviewers may create a 'config.js' file in the 'src' directory with the following structure:
 
 ####
 const Config = 
