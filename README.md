@@ -12,6 +12,6 @@ export default Config;
 ####
 
 Changes made for Exceeds Expectations are the addition of a modal which allows the user
-to view larger versions of the photos by clicking on them individually.
+to view larger versions of the photos by clicking on them individually in the gallery.
 Animation has been provided with calls to Animate.css cdn imported via the App.css file.
 Background colors have been modified. 
