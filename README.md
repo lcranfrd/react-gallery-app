@@ -11,7 +11,7 @@ const Config =
 export default Config;
 ####
 
-Changes made to allow for Exceeds Expectations are the addition of a modal which allows the user
+Changes made for Exceeds Expectations are the addition of a modal which allows the user
 to view larger versions of the photos by clicking on them individually.
 Animation has been provided with calls to Animate.css cdn imported via the App.css file.
 Background colors have been modified. 
