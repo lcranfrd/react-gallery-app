@@ -1,3 +1,13 @@
+/**------------------------------------------------------------------------
+ * *                          LargePicModal.js
+ * 
+ * React functional component which displays the large version of the image
+ * selected by the user from the gallery page. Close button is provided
+ * which removes the image page through history.goBack(). A setTimout()
+ * function calls the goBack() method allowing time for the classlist to
+ * be renamed invoking a slideOutUp animations. Calling setModalOnState
+ * causes a render which accomplishes the page close.
+ *------------------------------------------------------------------------**/
 import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 

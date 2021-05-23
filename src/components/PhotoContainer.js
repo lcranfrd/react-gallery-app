@@ -1,4 +1,13 @@
-
+/**------------------------------------------------------------------------
+ * *                                PhotoContainer.js
+ *
+ * Functional Component which first tests the '/Search/:topic' route with
+ * the most recent search topic and forces an axios.get if they are not the
+ * same. This provides continuity in the browser's back/forward buttons
+ * with the rendered data being in sync with the route being called via
+ * the browser's history. If the new search is not necessary, the
+ * 'PhotoBuild.js' component is rendered.
+ *------------------------------------------------------------------------**/
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import PhotoBuild from './PhotoBuild';

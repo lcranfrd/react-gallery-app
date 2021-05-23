@@ -1,11 +1,12 @@
-/**=================================================================================================
+/**========================================================================+++
  * ?                                                     ABOUT
  * @author         :  L. Bennett Crantford
  * @email          :  lcranfrd@comcast.net
- * @repo           :  
+ * @repo           :  https://github.com/lcranfrd/react-gallery-app.git
  * @createdOn      :  5/22/2021
  * @description    :  React App Exercise to Display images from Flickr API
- *===============================================================================================**/
+ * for TreeHouse FS Techdegree Project #7.
+ *=========================================================================+**/
 import React, {Component} from 'react';
 import {
   BrowserRouter,
@@ -26,8 +27,8 @@ import LargePicModal from './components/LargePicModal';
  * Constructor method:
  * 'this.state'
  *  data points for jason data storage and variables for rendering and props.
- * 'this.fetchOpions'
- *  object listing paramenters used for axios.get. Created for easy editing.
+ * 'this.fetchOptions'
+ *  object listing parameters used for axios.get. Created for easy editing.
  * 'this.titles'
  *  object for titles associated with data points. These are used as values
  *  for the tag parameter in the fetchOptions as well as NavLink rendering.
@@ -70,8 +71,9 @@ class App extends Component {
  **                           componentDidMount
  *?  React method for post mount rendering. All preset data objects are
  *?  loaded with flickr json data. Those data points are aligned with
- *?  Navlinks in 'Nav.js' and jason data passed to 'PhotoContainer.js' for
- *?  image processing when activated via NavLink.
+ *?  NavLinks in 'Nav.js' and corresponding json data then passed to
+ *?  'PhotoContainer.js' for image processing when activated via NavLink
+ *?  via route definitions.
  *@return null
  *========================================================================**/
   componentDidMount() {
@@ -85,8 +87,8 @@ class App extends Component {
  **                           fetchData
  *?  Function to load one of the data objects with json data from axios.get
  *?  call. 'dataPage' contains the string identifying the corresponding
- *?  data object. 'topic is the string value to set the tags parameter for
- *?  'fetchOptions' fed to axios.get.
+ *?  data object to load. 'topic is the string value to set the tags
+ *?  parameter for 'fetchOptions' fed to axios.get.
  *@param topic string  
  *@param dataPage string  
  *@return null
@@ -109,8 +111,9 @@ class App extends Component {
     
 /**========================================================================
  **                           performSearch
- *?  Callback invoking fetchData() with user input search string for
- *?  axios.get setting the datapoint object which will be passed to the
+ *?  Callback passed to SearchForm.js invoking fetchData() with user input
+ *?  search string for axios.get setting the data point object which will
+ *?  be passed to the
  *?  'search/:topic' route.
  *@param topic string  
  *@return null
@@ -121,9 +124,10 @@ class App extends Component {
 
 /**========================================================================
  **                           modalOn
- *?  Callback invoking 'this.setState()' react method activated by the user
- *?  clicking on an image. This will cause a render showing the larger version
- *?  of the image clicked with the route 'LargePic/:name'.
+ *?  Callback passed to LargePic.js invoking 'this.setState()' react method
+ *?  activated by the user clicking on an image. This will cause a render
+ *?  showing the larger version of the image clicked with the route
+ *? 'LargePic/:name'.
  *@param largeUrl type  
  *@param title type  
  *@return null

@@ -1,3 +1,11 @@
+/**------------------------------------------------------------------------
+ * *                                PhotoBuild.js
+ * 
+ * Functional component to render photo gallery. Each photo is loaded with
+ * an onClick which will render the LargePicModal.js. 'LargePic/:title'
+ * is pushed into the history in order for the route proper route to be
+ * called.
+ *------------------------------------------------------------------------**/
 import React from 'react';
 import {useHistory} from 'react-router';
 

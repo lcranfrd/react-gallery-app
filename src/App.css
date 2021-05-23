@@ -95,7 +95,7 @@ input {
 .photo-container .not-found {
   width: 100%;
 }
-/* ###### Modal dec */
+/* ###### Modal Declarations */
 .modal-container {
   position: fixed;
   top: 0;
@@ -117,7 +117,6 @@ input {
   border-radius: 0.25em;
   border: 1px solid rgba(100, 100, 100, 0.3);
   z-index: 0;
-  /* transition: 2s ease-out; */
 }
 .large-pic-title {
   margin: 30px;
@@ -134,6 +133,7 @@ input {
   border-radius: 0.25em;
   border: 1px solid rgba(50, 50, 50, 0.3);
 }
+/* ##### End Modal Declaration */
 
 @media only screen and (max-width: 767px)  {
   body {
