@@ -1,6 +1,5 @@
 import React from 'react';
 import { withRouter } from 'react-router';
-// import LargePicModal from './LargePicModal';
 
 const PhotoBuild = (props) => {
   const {serverId, id, secret, title, modalOn} = props;

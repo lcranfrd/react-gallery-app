@@ -34,16 +34,23 @@ class App extends Component {
       tags: "astronomy",
       sort: "relevance",
       per_page: "24",
+      content_type: 1,
       format: "json",
       nojsoncallback: "1",
+    }
+    this.titles = {
+      title1: 'Hubble',
+      title2: 'Monuments',
+      title3: 'Experimental Planes',
+      title4: 'Surveilence'
     }
   }
   
   componentDidMount() {
-    this.fetchData('Astronomy')
-    this.fetchData('Boats', 'data2')
-    this.fetchData('Experimental Planes', 'data3')
-    this.fetchData('Oort Cloud', 'data4')
+    this.fetchData(this.titles.title1)
+    this.fetchData(this.titles.title2, 'data2')
+    this.fetchData(this.titles.title3, 'data3')
+    this.fetchData(this.titles.title4, 'data4')
   }
     
     fetchData = (topic = this.fetchOptions.tags, dataPage = 'data1') => {
@@ -66,7 +73,7 @@ class App extends Component {
       this.fetchData(topic, 'data5');
     }
 
-    modalOn = (largeUrl, title) => {
+    modalOn = (largeUrl, title = 'Title Not Recorded') => {
       this.setState({
         isModalOn: true,
         modalUrl: largeUrl,
@@ -79,35 +86,35 @@ class App extends Component {
       <BrowserRouter>
         <div className="container">
           <SearchForm execSearch={this.performSearch} />
-          <Nav />
+          <Nav titles={this.titles}/>
              { (this.state.loading)
                 ? <h1>Loading!</h1>
                 : <Switch>
                   <Route exact path='/' render={() =>
                     <PhotoContainer
                       data={this.state.data1}
-                      title='Astronomy'
+                      title={this.titles.title1}
                       modalOn={this.modalOn}
                     />} />
-                  <Route path='/Astronomy' render={() => <Redirect to='/' />} />
-                  <Route path='/Boats' render={() =>
+                  <Route path={`/${this.titles.title1}`} render={() => <Redirect to='/' />} />
+                  <Route path={`/${this.titles.title2}`} render={() =>
                     <PhotoContainer
                       data={this.state.data2}
-                      title='Boats'
+                      title={this.titles.title2}
                       modalOn={this.modalOn}
                     />}
                   />
-                  <Route path='/Experimental Planes' render={() =>
+                  <Route path={`/${this.titles.title3}`} render={() =>
                     <PhotoContainer
                       data={this.state.data3}
-                      title='Experimental Planes'
+                      title={this.titles.title3}
                       modalOn={this.modalOn}
                     />}
                   />
-                  <Route path='/Oort Cloud' render={() =>
+                  <Route path={`/${this.titles.title4}`} render={() =>
                     <PhotoContainer
                       data={this.state.data4}
-                      title='Oort Cloud'
+                      title={this.titles.title4}
                       modalOn={this.modalOn}
                     />}
                   />
