@@ -43,7 +43,7 @@ class App extends Component {
       data3: [],
       data4: [],
       data5: [],
-      topic: '',
+      topic: null,
       loading: true,
       isModalOn: false,
       modalUrl: "",
@@ -70,7 +70,7 @@ class App extends Component {
 /**========================================================================
  **                           componentDidMount
  *?  React method for post mount rendering. All preset data objects are
- *?  loaded with flickr json data. Those data points are aligned with
+ *?  loaded with flickr json data once. Those data points are aligned with
  *?  NavLinks in 'Nav.js' and corresponding json data then passed to
  *?  'PhotoContainer.js' for image processing when activated via NavLink
  *?  via route definitions.
@@ -113,8 +113,7 @@ class App extends Component {
  **                           performSearch
  *?  Callback passed to SearchForm.js invoking fetchData() with user input
  *?  search string for axios.get setting the data point object which will
- *?  be passed to the
- *?  'search/:topic' route.
+ *?  be passed to the 'search/:topic' route.
  *@param topic string  
  *@return null
  *========================================================================**/
@@ -140,7 +139,7 @@ class App extends Component {
       })
     }
 
-    render() { 
+    render() {
     return (
       <BrowserRouter>
         <div className="container">
@@ -178,13 +177,14 @@ class App extends Component {
                     />}
                   />
                   <Route path='/Search/:topic' render={(props) =>
-                    <PhotoContainer
+                  <PhotoContainer
                       execSearch={this.performSearch}
                       data={this.state.data5}
                       title={this.state.topic}
                       modalOn={this.modalOn}
                       {...props}
-                    />}
+                    />
+                    }
                   />
                   <Route path='/LargePic/:name' render={() =>
                     <LargePicModal
