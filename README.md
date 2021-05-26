@@ -20,7 +20,7 @@ Comment out the import statement for the ./config.js in line 18.
 Replace api_key key's value with your api key value in line 54, in the fetchOptions object.
 
 
-Changes made to allow for Exceeds Expectations are the addition of a modal which allows the user
-to view larger versions of the photos by clicking on them individually.
+Changes made for Exceeds Expectations are the addition of a modal which allows the user
+to view larger versions of the photos by clicking on them individually in the gallery.
 Animation has been provided with calls to Animate.css cdn imported via the App.css file.
 Background colors have been modified. 
