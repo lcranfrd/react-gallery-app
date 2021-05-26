@@ -13,12 +13,12 @@ const Config =
 
 export default Config;
 ***
-
+***
 Methood 2)
 In App.js
 Comment out the import statement for the ./config.js in line 18.
 Replace api_key key's value with your api key value in line 54, in the fetchOptions object.
-
+***
 
 Changes made for Exceeds Expectations are the addition of a modal which allows the user
 to view larger versions of the photos by clicking on them individually in the gallery.
