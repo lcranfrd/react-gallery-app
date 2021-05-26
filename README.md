@@ -2,10 +2,10 @@ App for TreeHouse FS Tech Degree Project #7 React Gallery App
 Display photos from Flickr API.
 There are two methods to choose from to make this app work with your own Flickr API Key.
 
+***
 Method 1)
 create a 'config.js' file in the 'src' directory with the following structure:
 
-***
 const Config = 
   {
     api_key: "Your flickr Api Key here"
